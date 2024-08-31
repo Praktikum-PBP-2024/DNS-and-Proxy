@@ -27,6 +27,10 @@ server {" f"""
         server_name {row[0]}.shariyl.cloud;
         client_max_body_size 4096M;
 
+        listen 443 ssl;
+        ssl_certificate /etc/letsencrypt/live/shariyl.cloud/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/shariyl.cloud/privkey.pem;
+
         location / """ "{" f"""
                 proxy_pass http://10.99.99.{int(row[0][-3:])}/;
                 proxy_buffering off;
